@@ -1,0 +1,24 @@
+.wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .item {
+    flex: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 12px;
+    .img {
+      background-image: url('//static.daojia.com/assets/project/wx-index-v2/images/foot-v2.png');
+      background-size: 172px 50px;
+      width: 25px;
+      height: 25px;
+    }
+  }
+}

@@ -1,0 +1,69 @@
+.head {
+  background: linear-gradient(-225deg, #e6454a 0, #ed594b 50%, #ff884c 100%);
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  img {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .wrap {
+    display: flex;
+    position: absolute;
+    left: 92px;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    a {
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+      .addr {
+        font-weight: bold;
+        max-width: 70px;
+        vertical-align: bottom;
+      }
+      span {
+        font-size: 10px;
+        svg {
+          vertical-align: bottom;
+        }
+      }
+    }
+    .search {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 100px;
+      flex: 1 1 100%;
+      height: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      i {
+        background: url('https://static.daojia.com/changsha/fe-website-dj-m/static/widget/topbar/img/icon-search_43cc9f9.png');
+        width: 12px;
+        height: 12px;
+        background-size: 100%;
+        display: inline-block;
+      }
+      span {
+        color: #848c99;
+        font-size: 13px;
+        margin-left: 6.5px;
+      }
+    }
+  }
+  .overflowEllipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  
+}
+

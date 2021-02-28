@@ -1,0 +1,43 @@
+.container {
+  background-color: #fff;
+  margin-bottom: 10px;
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 54px;
+    padding: 0 15px;
+    .left {
+      font-size: 17px;
+    }
+    .right {
+      font-size: 14px;
+      color: #525a66;
+    }
+  }
+  .wrap {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 13px;
+    padding: 10px 0 12px;
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      content: '';
+      display: block;
+      height: 1px;
+      background-color: #e8ebf0;
+      transform: scaleY(0.5);
+    }
+    .item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

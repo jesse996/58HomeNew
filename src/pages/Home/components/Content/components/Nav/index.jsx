@@ -97,6 +97,7 @@ const Nav = (props) => {
               className={style.img}
               width="45px"
               height="45px"
+              alt=""
             ></img>
             <span className={style.name}>{item.name} </span>
           </Link>

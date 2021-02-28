@@ -15,6 +15,7 @@ const HomeChoice = (props) => {
             src="https://images.daojia.com/dop/custom/b4c78f9868b2e7f9e2428144eba0519a.png"
             width="50px"
             height="50px"
+            alt=""
           ></img>
         </div>
         <div className={style.item}>
@@ -25,6 +26,7 @@ const HomeChoice = (props) => {
             src="https://images.daojia.com/dop/custom/a717ad46351b2e424e33b3d2ca483cf4.png"
             width="50px"
             height="50px"
+            alt=""
           ></img>
         </div>
       </div>

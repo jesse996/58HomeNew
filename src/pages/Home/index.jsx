@@ -1,6 +1,5 @@
-import React from 'react'
-import Head from '../../components/Head'
-import Content from '../../components/Content/Index'
+import Head from './components/Head/index'
+import Content from './components/Content/index'
 
 const Home = (props) => {
   return (

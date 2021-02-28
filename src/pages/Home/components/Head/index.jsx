@@ -1,5 +1,5 @@
 import React from 'react'
-// import './index.module.scss'
+import { Link } from 'react-router-dom'
 import { head, wrap, addr, overflowEllipsis, search } from './index.module.scss'
 
 const Head = (props) => {
@@ -12,14 +12,14 @@ const Head = (props) => {
         height="18px"
       ></img>
       <div className={wrap}>
-        <a href="/">
+        <Link to="/">
           <div className={`${addr} ${overflowEllipsis}`}>中国银行紫阳湖</div>
           <span>
             <svg className="icon" aria-hidden="true">
               <use xlinkHref="#icondown"></use>
             </svg>
           </span>
-        </a>
+        </Link>
         <div className={search}>
           <i></i>
           <span>搜索</span>

@@ -89,8 +89,8 @@ const Nav = (props) => {
   ]
   return (
     <div className={style.wrap}>
-      {data.map((item) => (
-        <div className={style.item}>
+      {data.map((item, index) => (
+        <div className={style.item} key={index}>
           <Link to={item.link}>
             <img
               src={item.img}

@@ -36,7 +36,7 @@ const HomeDoor = (props) => {
       </div>
       <div className={style.wrap}>
         {data.map((item, index) => (
-          <Link to={item.link}>
+          <Link to={item.link} key={index}>
             <div className={style.item}>
               <img src={item.img} width="40px" height="40px" alt=""></img>
               <span>{item.name}</span>

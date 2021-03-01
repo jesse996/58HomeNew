@@ -12,7 +12,7 @@ const Head = (props) => {
         height="18px"
       ></img>
       <div className={wrap}>
-        <Link to="/">
+        <Link to="/addr">
           <div className={`${addr} ${overflowEllipsis}`}>中国银行紫阳湖</div>
           <span>
             <svg className="icon" aria-hidden="true">

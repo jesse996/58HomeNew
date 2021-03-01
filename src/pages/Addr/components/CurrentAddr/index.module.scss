@@ -1,0 +1,48 @@
+.wrap {
+  .head {
+    line-height: 16px;
+    font-size: 14px;
+    color: #848c99;
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: url(//static.daojia.com/assets/project/dj-location/img/current.png);
+      background-size: 100%;
+      left: -20px;
+    }
+  }
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    a {
+      font-size: 16px;
+      color: #e6454a;
+      font-weight: 700;
+    }
+    .reLocate {
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+      min-width: 80px;
+      margin-left: 20px;
+      .icon {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background: url(//static.daojia.com/assets/project/dj-location/img/locate.png);
+        background-size: 100%;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .map {
+    height: 500px;
+  }
+}

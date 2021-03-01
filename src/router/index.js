@@ -4,6 +4,7 @@ import BlankLayout from '../layout/BlankLayout'
 import Home from '../pages/Home'
 import My from '../pages/My'
 import TabView from '../components/TabView'
+import Addr from '../pages/Addr'
 
 
 const routes = [{
@@ -33,6 +34,10 @@ const routes = [{
           component: My
         }
       ]
+    },
+    {
+      path: '/addr',
+      component: Addr
     }
   ]
 }]

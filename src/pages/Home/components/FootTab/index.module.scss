@@ -1,8 +1,21 @@
 .container {
   height: 50px;
-  // position: relative;
+  position: relative;
+
   .wrap {
+    &::before {
+      content: '';
+      display: block;
+      transform: scaleY(0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #e8ebf0;
+    }
     position: fixed;
+    height: 50px;
     bottom: 0;
     left: 0;
     right: 0;

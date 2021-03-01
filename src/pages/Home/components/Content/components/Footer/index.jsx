@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import style from './index.module.scss'
 
 const Footer = (props) => {
@@ -15,6 +16,70 @@ const Footer = (props) => {
         },
         {
           name: '北京搬家货运',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
+          link: '/',
+        },
+        {
+          name: '北京家电数码',
           link: '/',
         },
         {
@@ -88,7 +153,14 @@ const Footer = (props) => {
     },
   ]
   let currentTab = '热门服务'
-  const getCurrentItems = (title) => data.find((x) => x.title === title).data
+  const getCurrentItems = (title) => {
+    const res = data.find((x) => x.title === title).data
+    return showMore ? res : res.slice(0, 6)
+  }
+  const [showMore, setShowMore] = useState(false)
+  const triggerShowMore = () => {
+    setShowMore((e) => !e)
+  }
 
   return (
     <div className={style.container}>
@@ -103,6 +175,9 @@ const Footer = (props) => {
         {getCurrentItems(currentTab).map((item, index) => (
           <div className={style.item}>{item.name}</div>
         ))}
+      </div>
+      <div className={style.showMore} onClick={triggerShowMore}>
+        {showMore ? '查看' : '收起'}更多&gt;
       </div>
     </div>
   )

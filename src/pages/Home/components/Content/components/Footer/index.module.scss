@@ -20,6 +20,16 @@
     flex-wrap: wrap;
     .item {
       flex-basis: 50%;
+      margin: 5px 0;
+    }
+  }
+  .showMore {
+    font-size: 14px;
+    font-weight: 700;
+    &::after{
+      content: '';
+      display: inline-block;
+      
     }
   }
 }

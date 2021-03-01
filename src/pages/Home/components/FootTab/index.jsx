@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react'
-import { wrap, item, img } from './index.module.scss'
+import { container, wrap, item, img } from './index.module.scss'
 import { withRouter } from 'react-router-dom'
 
 const FootTab = (props) => {
@@ -28,42 +28,44 @@ const FootTab = (props) => {
     history.push(newPath)
   }
   return (
-    <div className={wrap}>
-      <div className={item} onClick={() => changeTab(0)}>
-        <i
-          className={img}
-          style={{
-            backgroundPosition: activate === 0 ? '0 100%' : '0 0',
-          }}
-        ></i>
-        <span>首页</span>
-      </div>
-      <div className={item} onClick={() => changeTab(1)}>
-        <i
-          className={img}
-          style={{
-            backgroundPosition: activate === 1 ? '-50px 100%' : '-50px 0',
-          }}
-        ></i>
-        <span>发服务</span>
-      </div>
-      <div className={item} onClick={() => changeTab(2)}>
-        <i
-          className={img}
-          style={{
-            backgroundPosition: activate === 2 ? '-75px 100%' : '-75px 0',
-          }}
-        ></i>
-        <span>消息</span>
-      </div>
-      <div className={item} onClick={() => changeTab(3)}>
-        <i
-          className={img}
-          style={{
-            backgroundPosition: activate === 3 ? '-100px 100%' : '-100px 0',
-          }}
-        ></i>
-        <span>我的</span>
+    <div className={container}>
+      <div className={wrap}>
+        <div className={item} onClick={() => changeTab(0)}>
+          <i
+            className={img}
+            style={{
+              backgroundPosition: activate === 0 ? '0 100%' : '0 0',
+            }}
+          ></i>
+          <span>首页</span>
+        </div>
+        <div className={item} onClick={() => changeTab(1)}>
+          <i
+            className={img}
+            style={{
+              backgroundPosition: activate === 1 ? '-50px 100%' : '-50px 0',
+            }}
+          ></i>
+          <span>发服务</span>
+        </div>
+        <div className={item} onClick={() => changeTab(2)}>
+          <i
+            className={img}
+            style={{
+              backgroundPosition: activate === 2 ? '-75px 100%' : '-75px 0',
+            }}
+          ></i>
+          <span>消息</span>
+        </div>
+        <div className={item} onClick={() => changeTab(3)}>
+          <i
+            className={img}
+            style={{
+              backgroundPosition: activate === 3 ? '-100px 100%' : '-100px 0',
+            }}
+          ></i>
+          <span>我的</span>
+        </div>
       </div>
     </div>
   )

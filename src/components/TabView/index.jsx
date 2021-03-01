@@ -2,12 +2,12 @@ import React from 'react'
 import { renderRoutes } from 'react-router-config'
 import FootTab from '../../pages/Home/components/FootTab'
 
-const TabView =(props)=>{
-  const {route} = props
+const TabView = (props) => {
+  const { route } = props
   return (
     <>
-    <FootTab></FootTab>
-    {renderRoutes(route.routes)}
+      {renderRoutes(route.routes)}
+      <FootTab></FootTab>
     </>
   )
 }

@@ -1,8 +1,25 @@
-import React from 'react'
+import { useEffect } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { head, wrap, addr, overflowEllipsis, search } from './index.module.scss'
+import * as utils from '../../../../utils'
+import { actionCreators } from '../../store'
 
 const Head = (props) => {
+  const { address, changeAddress, changeCity } = props
+  useEffect(() => {
+    if (address) return
+    utils
+      .getLocation()
+      .then(({ city, address }) => {
+        changeAddress(address)
+        changeCity(city)
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, [changeAddress, changeCity])
+
   return (
     <div className={head}>
       <img
@@ -13,7 +30,7 @@ const Head = (props) => {
       ></img>
       <div className={wrap}>
         <Link to="/addr">
-          <div className={`${addr} ${overflowEllipsis}`}>中国银行紫阳湖</div>
+          <div className={`${addr} ${overflowEllipsis}`}>{address}</div>
           <span>
             <svg className="icon" aria-hidden="true">
               <use xlinkHref="#icondown"></use>
@@ -28,4 +45,14 @@ const Head = (props) => {
     </div>
   )
 }
-export default Head
+
+const mapStateToProps = (state) => ({
+  address: state.main.address,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  changeAddress: (addr) => dispatch(actionCreators.changeAddress(addr)),
+  changeCity: (city) => dispatch(actionCreators.changeCity(city)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Head)

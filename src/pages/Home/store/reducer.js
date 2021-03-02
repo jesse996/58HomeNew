@@ -1,7 +1,8 @@
 import * as actionType from "./constants";
 
 const dafaultstate = {
-  city: '北京市'
+  city: '',
+  address: ''
 }
 
 const reducer = (state = dafaultstate, action) => {
@@ -9,6 +10,8 @@ const reducer = (state = dafaultstate, action) => {
     case actionType.CHANGE_CITY:
       return { ...state, city: action.payload }
 
+    case actionType.CHANGE_ADDRESS:
+      return { ...state, address: action.payload }
     default:
       return state
   }

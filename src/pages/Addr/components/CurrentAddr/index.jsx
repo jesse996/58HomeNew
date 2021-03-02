@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import style from './index.module.scss'
+import { memo } from 'react'
 
 const CurrentAddr = (props) => {
-  const [currentLocation, setCurrentLocation] = useState()
+  const { city, setCity } = props
+  const [currentLocation, setCurrentLocation] = useState(city)
+
   let map = useRef(null)
   // let AMap = useRef(window.AMap)
   let AMap = window.AMap
@@ -73,6 +76,7 @@ const CurrentAddr = (props) => {
           // alert(obj.location_type)
           setLocationType(obj.location_type)
           setCurrentLocation(obj.formattedAddress)
+          setCity(obj.addressComponent.city)
         }
       }
     )
@@ -104,4 +108,4 @@ const CurrentAddr = (props) => {
   )
 }
 
-export default CurrentAddr
+export default memo(CurrentAddr)

@@ -1,0 +1,68 @@
+.container {
+  position: relative;
+  padding: 15px 0 15px 15px;
+  background-color: #fff;
+  .wrap {
+    margin-right: 15px;
+    background-color: #eff0f1;
+    // height: 35px;
+    line-height: 35px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .city {
+      padding: 0 22px 0 15px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      color: #292d33;
+      font-weight: 700;
+      &::before {
+        content: '';
+        display: inline-block;
+        background: url(//static.daojia.com/assets/project/dj-location/img/arrow-icon.png)
+          no-repeat 100%;
+        background-size: 100%;
+        width: 7px;
+        height: 4.5px;
+        position: absolute;
+        right: 10px;
+      }
+      &::after {
+        content: '';
+        width: 1px;
+        height: 17px;
+        display: block;
+        position: absolute;
+        right: 0;
+        transform: scaleX(0.5);
+        transform-origin: 0 1px;
+        background: #babfc8;
+      }
+    }
+    .input {
+      flex: auto;
+      border: none;
+      background-color: transparent;
+      font-family: PingFang-Regular, Helvetica Neue, Helvetica, Arial,
+        PingFang SC, Heiti SC, Hiragino Sans GB, Microsoft YaHei, sans-serif;
+      font-size: 15px;
+      outline: none;
+    }
+    .cancle {
+      position: absolute;
+      right: 5px;
+      width: 50px;
+      color: #e6454a;
+      font-size: 15px;
+      text-align: center;
+      
+    }
+  }
+  .wrapSmall {
+    margin-right: 55px;
+  }
+}

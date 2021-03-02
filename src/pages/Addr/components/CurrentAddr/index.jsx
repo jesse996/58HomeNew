@@ -1,27 +1,26 @@
-import { useEffect, useRef, useReducer, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import style from './index.module.scss'
 
 const CurrentAddr = (props) => {
   const [currentLocation, setCurrentLocation] = useState()
-  let map
-  let AMap
-  const init = () => {
-    AMap = window.AMap
-    map = new AMap.Map('map', {
+  let map = useRef(null)
+  // let AMap = useRef(window.AMap)
+  let AMap = window.AMap
+
+  const init = useCallback(() => {
+    // AMap.current = window.AMap
+    map.current = new AMap.Map('map', {
       zoom: 11, //级别
-      // center: [116.397428, 39.90923], //中心点坐标
-      viewMode: '3D', //使用3D视图
+      // viewMode: '3D', //使用3D视图
     })
-  }
-  useEffect(() => {
-    relocate()
-  }, [])
-  const relocate = () => {
-    if (!map) {
+  }, [AMap.Map])
+
+  const relocate = useCallback(() => {
+    // let AMap = window.AMap
+    if (!map.current) {
       init()
     }
-    console.log(map)
     AMap.plugin(
       [
         'AMap.ToolBar',
@@ -32,7 +31,7 @@ const CurrentAddr = (props) => {
       ],
       function () {
         // 在图面添加工具条控件，工具条控件集成了缩放、平移、定位等功能按钮在内的组合控件
-        map.addControl(new AMap.ToolBar())
+        map.current.addControl(new AMap.ToolBar())
         // 在图面添加鹰眼控件，在地图右下角显示地图的缩略图
         // map.addControl(new AMap.HawkEye({ isOpen: true }))
         var geolocation = new AMap.Geolocation({
@@ -47,72 +46,52 @@ const CurrentAddr = (props) => {
           showCircle: true, // 定位成功后用圆圈表示定位精度范围，默认：true
           panToLocation: true, // 定位成功后将定位到的位置作为地图中心点，默认：true
           zoomToAccuracy: true, // 定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：fal
+          needAddress: true, // 地址逆编码,失败不会报错，会一直等待，所以不用这个
+          // noIpLocate: 0, //是否禁用IP精确定位，默认为0，0:都用 1:手机上不用 2:PC上不用 3:都不用
+          noGeoLocation: 2, //是否禁用浏览器原生定位，默认为0，0:都用 1:手机上不用 2:PC上不用 3:都不用
+          useNative: true, //是否与高德定位SDK能力结合，需要同时使用安卓版高德定位sdk，否则无效
+          getCityWhenFail: true, //定位失败之后是否返回基本城市定位信息
         })
 
-        map.addControl(geolocation)
+        map.current.addControl(geolocation)
 
         geolocation.getCurrentPosition(function (status, result) {
           if (status === 'complete') {
             onComplete(result)
           } else {
-            onError(result)
+            alert('error! ' + JSON.stringify(result))
+            console.log(result)
           }
         })
 
+        //获取地址成功回调
         function onComplete(obj) {
           // data是具体的定位信息
-          console.log('success!')
+          // console.log('success CurrentPosition!')
+          // alert(JSON.stringify(obj))
           console.log(obj)
-
-          //geocoder
-          let geocoder = new AMap.Geocoder({
-            radius: 1000, //以已知坐标为中心点，radius为半径，返回范围内兴趣点和道路信息
-            extensions: 'base', //返回地址描述以及附近兴趣点和道路信息，默认“base”
-          })
-          //返回地理编码结果
-          geocoder.on('complete', (data) => {
-            console.log('地理编码结果')
-            console.log(data)
-            if (data.info) {
-              setCurrentLocation(data.regeocode.formattedAddress)
-            }
-          })
-          var gps = [obj.position.lng, obj.position.lat]
-          geocoder.getAddress(new AMap.LngLat(gps[0], gps[1]))
-          // AMap.convertFrom(gps, 'gps', function (status, result) {
-          //   console.log('convert:' + status)
-          //   console.log(result)
-          //   if (result.info === 'ok') {
-          //     var lnglats = result.locations // Array.<LngLat>
-          //     //逆地理编码
-          //     // geocoder.getAddress(lnglats)
-          //     // geocoder.getAddress(new AMap.LngLat(116.359119, 39.972121))
-          //   }
-          // })
+          // alert(obj.location_type)
+          setLocationType(obj.location_type)
+          setCurrentLocation(obj.formattedAddress)
         }
-
-        function onError(data) {
-          // 定位出错
-          // console.log('error!')
-          // console.log(data)
-        }
-
-        // 城市
-        // var citySearch = new AMap.CitySearch()
-        // citySearch.getLocalCity(function (status, result) {
-        //   if (status === 'complete' && result.info === 'OK') {
-        //     // 查询成功，result即为当前所在城市信息
-        //     console.log(result)
-        //     // setCurrentLocation(result.province + ' ' + result.city)
-        //   }
-        // })
       }
     )
-  }
+  }, [AMap, init, map])
+
+  useEffect(() => {
+    //进入页面时初始化一次
+    init()
+    relocate()
+  }, [init, relocate])
+
+  const [locationType, setLocationType] = useState('')
 
   return (
     <div className={style.wrap}>
-      <div className={style.head}>当前地址</div>
+      <div className={style.head}>
+        <div>当前地址</div>
+        <div>定位方式：{locationType}</div>
+      </div>
       <div className={style.content}>
         <Link to="/">{currentLocation}</Link>
         <div className={style.reLocate} onClick={relocate}>

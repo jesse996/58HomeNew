@@ -4,6 +4,9 @@
     font-size: 14px;
     color: #848c99;
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     &::before {
       content: '';
       display: block;

@@ -18,7 +18,7 @@ const Head = (props) => {
       .catch((error) => {
         alert(error)
       })
-  }, [changeAddress, changeCity])
+  }, [changeCity, address, changeAddress])
 
   return (
     <div className={head}>

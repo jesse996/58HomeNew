@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import CurrentAddr from './components/CurrentAddr'
 import SearchBox from './components/SearchBox'
 import style from './index.module.scss'
 import { actionCreators } from '../Home/store'
-// import { changeCity } from '../Home/store/actionCreators'
+import * as utils from '../../utils'
 
 const Addr = (props) => {
   const { city, changeCity, address, changeAddress } = props
@@ -13,6 +13,14 @@ const Addr = (props) => {
   const changeSearching = (state) => {
     setSearching(state)
   }
+  useEffect(() => {
+    if (!city || !address) {
+      utils.getLocation().then(({ city, address }) => {
+        changeCity(city)
+        changeAddress(address)
+      })
+    }
+  }, [address, city, changeCity, changeAddress])
 
   return (
     <>

@@ -3,7 +3,9 @@
   padding: 15px 0 15px 15px;
   background-color: #fff;
   .wrap {
+    // padding: 15px;
     margin-right: 15px;
+    margin-bottom: 15px;
     background-color: #eff0f1;
     height: 35px;
     line-height: 35px;
@@ -63,5 +65,34 @@
   }
   .wrapSmall {
     margin-right: 55px;
+  }
+  .content {
+    padding-left: 20px;
+    .item {
+      padding: 15px 0;
+      position: relative;
+      .name {
+        font-size: 15px;
+        line-height: 17px;
+        color: #292d33;
+      }
+      .area {
+        margin-top: 6px;
+        line-height: 16px;
+        font-size: 13px;
+        color: #848c99;
+      }
+      &::after {
+        content: '';
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: scaleY(0.5);
+        transform-origin: 0 1px;
+        background: #e8ebf0;
+      }
+    }
   }
 }

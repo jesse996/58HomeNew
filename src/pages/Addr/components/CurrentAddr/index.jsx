@@ -39,7 +39,7 @@ const CurrentAddr = (props) => {
           zoomToAccuracy: true, // 定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：fal
           // needAddress: true, // 地址逆编码,失败不会报错，会一直等待，所以不用这个
           // noIpLocate: 0, //是否禁用IP精确定位，默认为0，0:都用 1:手机上不用 2:PC上不用 3:都不用
-          noGeoLocation: 2, //是否禁用浏览器原生定位，默认为0，0:都用 1:手机上不用 2:PC上不用 3:都不用
+          // noGeoLocation: 2, //是否禁用浏览器原生定位，默认为0，0:都用 1:手机上不用 2:PC上不用 3:都不用
           useNative: true, //是否与高德定位SDK能力结合，需要同时使用安卓版高德定位sdk，否则无效
           getCityWhenFail: true, //定位失败之后是否返回基本城市定位信息
         })
@@ -88,7 +88,7 @@ const CurrentAddr = (props) => {
     <div className={style.wrap}>
       <div className={style.head}>
         <div>当前地址</div>
-        <div>定位方式：{locationType}</div>
+        {locationType ? <div>定位方式：{locationType}</div> : ''}
       </div>
       <div className={style.content}>
         <Link to="/">{address}</Link>

@@ -255,7 +255,6 @@ const Footer = (props) => {
   const getCurrentItems = (title) => {
     const res = data.find((x) => x.title === title).data
     let ans = showMore ? res : res.slice(0, 6)
-    console.log(ans)
     return ans
   }
   const [showMore, setShowMore] = useState(false)

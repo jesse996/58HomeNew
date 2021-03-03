@@ -6,20 +6,21 @@ import * as utils from '../../../../utils'
 import { actionCreators } from '../../store'
 
 const Head = (props) => {
-  const { address, changeAddress, changeCity } = props
+  const { address, changeAddress, changeCity, changePois } = props
   useEffect(() => {
     if (address) return
     utils
       .getLocation()
-      .then(({ formattedAddress, addressComponent }) => {
-        console.log(addressComponent)
+      .then(({ formattedAddress, addressComponent, pois }) => {
+        // console.log(pois)
         changeAddress(formattedAddress)
         changeCity(addressComponent.city)
+        changePois(pois)
       })
       .catch((error) => {
         alert(error)
       })
-  }, [changeCity, address, changeAddress])
+  }, [changeCity, address, changeAddress, changePois])
 
   return (
     <div className={head}>
@@ -55,6 +56,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeAddress: (addr) => dispatch(actionCreators.changeAddress(addr)),
   changeCity: (city) => dispatch(actionCreators.changeCity(city)),
+  changePois: (data) => dispatch(actionCreators.changePois(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(Head))

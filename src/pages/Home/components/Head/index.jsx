@@ -7,18 +7,18 @@ import { actionCreators } from '../../store'
 
 const Head = (props) => {
   const { address, changeAddress, changeCity } = props
-  useEffect(() => {
-    if (address) return
-    utils
-      .getLocation()
-      .then(({ city, address }) => {
-        changeAddress(address)
-        changeCity(city)
-      })
-      .catch((error) => {
-        alert(error)
-      })
-  }, [changeCity, address, changeAddress])
+  // useEffect(() => {
+  //   if (address) return
+  //   utils
+  //     .getLocation()
+  //     .then(({ city, address }) => {
+  //       changeAddress(address)
+  //       changeCity(city)
+  //     })
+  //     .catch((error) => {
+  //       alert(error)
+  //     })
+  // }, [changeCity, address, changeAddress])
 
   return (
     <div className={head}>

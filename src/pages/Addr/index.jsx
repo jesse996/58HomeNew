@@ -1,31 +1,31 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { connect } from 'react-redux'
 import CurrentAddr from './components/CurrentAddr'
 import SearchBox from './components/SearchBox'
 import style from './index.module.scss'
 import { actionCreators } from '../Home/store'
-import * as utils from '../../utils'
+// import * as utils from '../../utils'
 
 const Addr = (props) => {
-  const { city, changeCity, address, changeAddress } = props
+  const { city, changeCity, changeAddress } = props
   const [searching, setSearching] = useState(false)
   // const [city, setCity] = useState('')
   const changeSearching = (state) => {
     setSearching(state)
   }
-  useEffect(() => {
-    if (!city || !address) {
-      utils
-        .getLocation()
-        .then(({ city, address }) => {
-          changeCity(city)
-          changeAddress(address)
-        })
-        .catch((e) => {
-          console.log(e)
-        })
-    }
-  }, [address, city, changeCity, changeAddress])
+  // useEffect(() => {
+  //   if (!city || !address) {
+  //     utils
+  //       .getLocation()
+  //       .then(({ city, address }) => {
+  //         changeCity(city)
+  //         changeAddress(address)
+  //       })
+  //       .catch((e) => {
+  //         console.log(e)
+  //       })
+  //   }
+  // }, [address, city, changeCity, changeAddress])
 
   return (
     <>
@@ -33,16 +33,16 @@ const Addr = (props) => {
         searching={searching}
         changeSearching={changeSearching}
         city={city}
-        changeCity={changeCity}
+        // changeCity={changeCity}
       ></SearchBox>
       <div
         className={style.container}
         style={{ display: searching ? 'none' : '' }}
       >
         <CurrentAddr
-          city={city}
+          // city={city}
           changeCity={changeCity}
-          address={address}
+          // address={address}
           changeAddress={changeAddress}
         ></CurrentAddr>
       </div>

@@ -13,3 +13,10 @@ export const changeAddress = (payload) => {
     payload
   }
 }
+
+export const changePois = (payload) => {
+  return {
+    type: actionType.CHANGE_POIS,
+    payload
+  }
+}

@@ -2,6 +2,7 @@ import { useState, memo } from 'react'
 import { connect } from 'react-redux'
 import CurrentAddr from './components/CurrentAddr'
 import SearchBox from './components/SearchBox'
+import NearAddr from './components/NearAddr'
 import style from './index.module.scss'
 // import { actionCreators } from '../Home/store'
 // import * as utils from '../../utils'
@@ -39,12 +40,8 @@ const Addr = (props) => {
         className={style.container}
         style={{ display: searching ? 'none' : '' }}
       >
-        <CurrentAddr
-        // city={city}
-        // changeCity={changeCity}
-        // address={address}
-        // changeAddress={changeAddress}
-        ></CurrentAddr>
+        <CurrentAddr></CurrentAddr>
+        <NearAddr></NearAddr>
       </div>
     </>
   )

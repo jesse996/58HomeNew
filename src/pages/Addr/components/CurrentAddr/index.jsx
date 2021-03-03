@@ -53,13 +53,11 @@ const CurrentAddr = (props) => {
   //获取地址成功回调
   const onComplete = useCallback(
     (obj) => {
+      console.log('定位成功')
       console.log(obj)
       setLocationType(obj.location_type)
       changeCity(obj.addressComponent.city)
-      let addr =
-        obj.addressComponent.street + ' ' + obj.addressComponent.neighborhood
-      changeAddress(addr)
-      // setAddress(addr)
+      changeAddress(obj.formattedAddress)
     },
     [changeAddress, changeCity]
   )
@@ -70,7 +68,6 @@ const CurrentAddr = (props) => {
     setLocationType('html5')
     changeCity('未知')
     changeAddress('定位失败')
-    // setAddress('定位失败')
   }, [changeAddress, changeCity])
 
   const relocate = useCallback(() => {

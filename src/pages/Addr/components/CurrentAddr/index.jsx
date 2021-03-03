@@ -6,6 +6,7 @@ import * as utils from '../../../../utils'
 
 const CurrentAddr = (props) => {
   const { changeCity, address, changeAddress } = props
+  const [locationType, setLocationType] = useState('')
   // const [currentLocation, setCurrentLocation] = useState(city)
 
   let map = useRef(null)
@@ -35,15 +36,19 @@ const CurrentAddr = (props) => {
       changeAddress(addr)
     }
     utils.getLocation(map.current, onComplete)
+    // .then((res) => console.log(res))
+    // .catch((e) => {
+    //   console.log(e)
+    // })
   }, [init, map, changeAddress, changeCity])
 
   useEffect(() => {
     //进入页面时初始化一次
     init()
-    // relocate()
-  }, [init])
-
-  const [locationType, setLocationType] = useState('')
+    if (!locationType) {
+      relocate()
+    }
+  }, [init, relocate, locationType])
 
   return (
     <div className={style.wrap}>

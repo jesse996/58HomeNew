@@ -15,10 +15,15 @@ const Addr = (props) => {
   }
   useEffect(() => {
     if (!city || !address) {
-      utils.getLocation().then(({ city, address }) => {
-        changeCity(city)
-        changeAddress(address)
-      })
+      utils
+        .getLocation()
+        .then(({ city, address }) => {
+          changeCity(city)
+          changeAddress(address)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
     }
   }, [address, city, changeCity, changeAddress])
 

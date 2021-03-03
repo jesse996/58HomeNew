@@ -32,6 +32,7 @@ const Head = (props) => {
       <div className={wrap}>
         <Link to="/addr">
           <div className={`${addr} ${overflowEllipsis}`}>{address}</div>
+
           <span>
             <svg className="icon" aria-hidden="true">
               <use xlinkHref="#icondown"></use>

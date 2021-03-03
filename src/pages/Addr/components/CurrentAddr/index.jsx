@@ -73,13 +73,13 @@ const CurrentAddr = (props) => {
 
   const relocate = useCallback(() => {
     console.log('relocate')
-    utils.getLocation(geolocation.current, onComplete, onError)
+    utils.getLocationWithGeo(geolocation.current, onComplete, onError)
   }, [onComplete, onError])
 
   useEffect(() => {
     //进入页面时初始化一次
     init().then(() => {
-      utils.getLocation(geolocation.current, onComplete, onError)
+      utils.getLocationWithGeo(geolocation.current, onComplete, onError)
     })
   }, [init, onComplete, onError])
 

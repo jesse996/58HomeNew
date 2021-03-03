@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import style from './index.module.scss'
 
 const Footer = (props) => {
@@ -292,4 +292,4 @@ const Footer = (props) => {
   )
 }
 
-export default Footer
+export default memo(Footer)

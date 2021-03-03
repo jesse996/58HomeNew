@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import style from './index.module.scss'
 import { memo } from 'react'
 import * as utils from '../../../../utils'
+import { connect } from 'react-redux'
+import { actionCreators } from '../../../Home/store'
 
 const CurrentAddr = (props) => {
-  const { changeCity, changeAddress } = props
+  const { changeCity, changeAddress, address } = props
   const [locationType, setLocationType] = useState('')
   // const [currentLocation, setCurrentLocation] = useState(city)
-  const [address, setAddress] = useState('')
+  // const [address, setAddress] = useState('')
 
   let map = useRef(null)
   let geolocation = useRef(null)
@@ -57,7 +59,7 @@ const CurrentAddr = (props) => {
       let addr =
         obj.addressComponent.street + ' ' + obj.addressComponent.neighborhood
       changeAddress(addr)
-      setAddress(addr)
+      // setAddress(addr)
     },
     [changeAddress, changeCity]
   )
@@ -68,7 +70,7 @@ const CurrentAddr = (props) => {
     setLocationType('html5')
     changeCity('未知')
     changeAddress('定位失败')
-    setAddress('定位失败')
+    // setAddress('定位失败')
   }, [changeAddress, changeCity])
 
   const relocate = useCallback(() => {
@@ -101,4 +103,13 @@ const CurrentAddr = (props) => {
   )
 }
 
-export default memo(CurrentAddr)
+const mapStateToProps = (state) => ({
+  city: state.main.city,
+  address: state.main.address,
+})
+const mapDispatchTOProps = (dispath, ownProps) => ({
+  changeCity: (city) => dispath(actionCreators.changeCity(city)),
+  changeAddress: (data) => dispath(actionCreators.changeAddress(data)),
+})
+
+export default connect(mapStateToProps, mapDispatchTOProps)(memo(CurrentAddr))

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import style from './index.module.scss'
 
@@ -13,4 +14,4 @@ const More = (props) => {
   )
 }
 
-export default More
+export default memo(More)

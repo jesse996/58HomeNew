@@ -1,3 +1,4 @@
+import { memo } from 'react'
 const TabItem = ({ name, img }) => {
   return (
     <div>
@@ -6,4 +7,4 @@ const TabItem = ({ name, img }) => {
     </div>
   )
 }
-export default TabItem
+export default memo(TabItem)

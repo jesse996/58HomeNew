@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import Head from './components/Head/index'
 import Content from './components/Content/index'
 
@@ -10,4 +11,4 @@ const Home = (props) => {
   )
 }
 
-export default Home
+export default memo(Home)

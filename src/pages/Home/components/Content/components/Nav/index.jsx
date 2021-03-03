@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import style from './index.module.scss'
 const Nav = (props) => {
@@ -107,4 +108,4 @@ const Nav = (props) => {
   )
 }
 
-export default Nav
+export default memo(Nav)

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, memo } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { head, wrap, addr, overflowEllipsis, search } from './index.module.scss'
@@ -7,18 +7,19 @@ import { actionCreators } from '../../store'
 
 const Head = (props) => {
   const { address, changeAddress, changeCity } = props
-  // useEffect(() => {
-  //   if (address) return
-  //   utils
-  //     .getLocation()
-  //     .then(({ city, address }) => {
-  //       changeAddress(address)
-  //       changeCity(city)
-  //     })
-  //     .catch((error) => {
-  //       alert(error)
-  //     })
-  // }, [changeCity, address, changeAddress])
+  useEffect(() => {
+    if (address) return
+    utils
+      .getLocation()
+      .then(({ formattedAddress, addressComponent }) => {
+        console.log(addressComponent)
+        changeAddress(formattedAddress)
+        changeCity(addressComponent.city)
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, [changeCity, address, changeAddress])
 
   return (
     <div className={head}>
@@ -55,4 +56,4 @@ const mapDispatchToProps = (dispatch) => ({
   changeCity: (city) => dispatch(actionCreators.changeCity(city)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Head)
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Head))

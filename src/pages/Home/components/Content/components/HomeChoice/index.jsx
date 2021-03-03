@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import style from './index.module.scss'
 
 const HomeChoice = (props) => {
@@ -34,4 +35,4 @@ const HomeChoice = (props) => {
   )
 }
 
-export default HomeChoice
+export default memo(HomeChoice)

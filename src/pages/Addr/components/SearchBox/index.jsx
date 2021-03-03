@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import style from './index.module.scss'
 
 const SearchBox = (props) => {
@@ -39,4 +39,4 @@ const SearchBox = (props) => {
   )
 }
 
-export default SearchBox
+export default memo(SearchBox)

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import style from './index.module.scss'
 
@@ -47,4 +48,4 @@ const HomeDoor = (props) => {
     </div>
   )
 }
-export default HomeDoor
+export default memo(HomeDoor)

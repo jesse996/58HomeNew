@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Redirect } from 'react-router-dom'
 import BlankLayout from '../layout/BlankLayout'
-import Home from '../pages/Home'
-import My from '../pages/My'
-import TabView from '../components/TabView'
-import Addr from '../pages/Addr'
+
+// import Home from '../pages/Home'
+// import My from '../pages/My'
+// import TabView from '../components/TabView'
+// import Addr from '../pages/Addr'
+
+const Home = lazy(() => import('../pages/Home'))
+const My = lazy(() => import('../pages/My'))
+const TabView = lazy(() => import('../components/TabView'))
+const Addr = lazy(() => import('../pages/Addr'))
+
+const SuspenseComponent = Component => props =>
+  <Suspense fallback={<div>loading...</div>}>
+    <Component {...props}></Component>
+  </Suspense>
+
+
+
 
 
 const routes = [{
@@ -18,7 +32,7 @@ const routes = [{
     },
     {
       path: '/home',
-      component: TabView,
+      component: SuspenseComponent(TabView),
       routes: [
         {
           path: '/home',
@@ -28,16 +42,16 @@ const routes = [{
         },
         {
           path: '/home/main',
-          component: Home
+          component: SuspenseComponent(Home)
         }, {
           path: '/home/my',
-          component: My
+          component: SuspenseComponent(My)
         }
       ]
     },
     {
       path: '/addr',
-      component: Addr
+      component: SuspenseComponent(Addr)
     }
   ]
 }]
